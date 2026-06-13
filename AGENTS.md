@@ -183,3 +183,43 @@ configuration while using this system's available components:
   `recent-windows` to match the old Alt-Tab workflow.
 - Screenshots are on `Print`, `Ctrl+Print`, and `Alt+Print`, with `XF86Launch1`
   alternatives.
+
+## IntelliJ / JetBrains
+
+IntelliJ IDEA is installed through JetBrains Toolbox:
+
+```text
+~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea
+```
+
+The desktop launcher is:
+
+```text
+~/.local/share/applications/jetbrains-idea-dcb504fb-0d49-41d3-9c0a-ee02df3678b0.desktop
+```
+
+On 2026-06-13, IntelliJ started working after this package transaction:
+
+```bash
+pacman -S code docker docker-compose gimp inkscape thunderbird libreoffice-fresh libmythes skrooge scrcpy vlc virt-manager
+```
+
+The exact minimal dependency was not isolated. The likely fix came from GUI or
+desktop-runtime dependencies pulled in by that transaction, especially the
+Electron/desktop stack (`code`, `electron42`) or related GUI/runtime libraries
+installed alongside Thunderbird, VLC, Qt, KDE Frameworks, and virt-manager.
+
+If IntelliJ exits silently again, first run it from a terminal outside sandbox:
+
+```bash
+~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea
+```
+
+Useful logs:
+
+```text
+~/.cache/JetBrains/IntelliJIdea2026.1/log/idea.log
+```
+
+If the log mentions locked cache databases or `StorageAlreadyInUseException`,
+check for an already running IntelliJ process before deleting cache files.
