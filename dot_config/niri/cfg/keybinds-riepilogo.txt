@@ -1,0 +1,89 @@
+Niri keybinds
+=============
+
+Apps / shell
+------------
+Mod+A          Application Launcher
+Mod+T          Terminal
+Mod+S          Settings
+Mod+M          System Monitor
+Mod+N          Notification Center
+Mod+Shift+N    Notepad / note card
+Mod+V          Clipboard Manager
+Mod+Y          Browse Wallpapers
+Mod+B          Browser
+Mod+E          File Manager
+Mod+Alt+L      Lock Screen
+Mod+Alt+P      Power Menu
+Mod+Backslash  Keybinds Summary
+
+Sessione / Sistema
+------------------
+Mod+Alt+Q      Quit niri
+Mod+Alt+O      Show hotkey overlay
+Mod+D          Overview
+Mod+Tab        Overview
+Ctrl+Alt+Del   Quit niri
+Mod+Shift+P    Power off monitors
+
+Audio / Media / Luminosita
+--------------------------
+XF86AudioRaiseVolume / LowerVolume / Mute / MicMute
+XF86AudioPlay / Pause / Next / Prev
+Ctrl+XF86AudioRaiseVolume / LowerVolume  MPRIS seek +3s / -3s
+XF86MonBrightnessUp / Down
+
+Navigazione
+-----------
+Mod+Left/Right      colonna sinistra/destra
+Mod+J/K             finestra sotto/sopra
+Mod+Up/Down         workspace sopra/sotto
+Mod+1..9            workspace 1..9
+Mod+Home/End        prima/ultima colonna
+Mod+Shift+frecce    monitor sinistra/destra/sopra/sotto
+
+Alt-Tab
+-------
+Alt+Tab        prossima finestra sullo schermo
+Alt+Shift+Tab  finestra precedente sullo schermo
+Alt+A          prossima finestra della stessa app
+Alt+Shift+A    finestra precedente della stessa app
+
+Spostamento / Posizione
+-----------------------
+Mod+Ctrl+Left/Right          sposta colonna sinistra/destra
+Mod+Ctrl+Up/Down             sposta finestra sopra/sotto
+Mod+Ctrl+1..9                sposta colonna al workspace 1..9
+Mod+Ctrl+I/U                 sposta colonna al workspace sopra/sotto
+Mod+Ctrl+Shift+I/U           sposta workspace sopra/sotto
+Mod+Ctrl+Home/End            sposta colonna all'inizio/fine
+Mod+Ctrl+Shift+frecce        sposta colonna al monitor
+Mod+Ctrl+A/D                 consume-or-expel left/right
+Mod+Ctrl+E                   expel-window-from-column
+
+Layout / Stato Finestra
+-----------------------
+Mod+Alt+F    fullscreen
+Mod+Alt+M    maximize column
+Mod+Alt+E    expand column to available width
+Mod+Alt+W    preset column width
+Mod+Alt+H    preset window height
+Mod+Alt+R    reset window height
+Mod+Alt+T    toggle floating
+Mod+Alt+B    toggle tabbed display
+Mod+Alt+C    center visible columns
+Mod+Alt+K/J  aumenta/riduce altezza finestra
+Mod+Alt+U    riduce larghezza colonna
+Mod+Shift+V  switch focus floating/tiling
+
+Screenshot
+----------
+Print / XF86Launch1        screenshot
+Ctrl+Print / Ctrl+XF86...  screenshot schermo
+Alt+Print / Alt+XF86...    screenshot finestra
+
+Non replicati senza DMS
+-----------------------
+Mod+Alt+N    Rename Workspace DMS
+Mod+Shift+W  Create window rule DMS
+Mod+Alt+I    Toggle keybind mode DMS
