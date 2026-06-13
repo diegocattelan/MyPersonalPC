@@ -42,6 +42,17 @@ chezmoi git -- commit -m "<message>"
 chezmoi git -- push
 ```
 
+Git HTTPS authentication uses the Secret Service/libsecret credential helper:
+
+```ini
+[credential]
+    helper = /usr/lib/git-core/git-credential-libsecret
+```
+
+This keeps GitHub credentials out of dotfiles. The first authenticated HTTPS
+push may still need the user to provide GitHub credentials or a token
+interactively; after that Git can retrieve them from the local keyring.
+
 ## Niri Config
 
 The local niri configuration lives in `~/.config/niri`.
