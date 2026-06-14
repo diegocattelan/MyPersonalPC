@@ -1,99 +1,94 @@
-Niri keybinds
-=============
+Tasto / gruppo                          Azione / nota
+================================================================================
 
-Linee guida
------------
-Mod        navigazione e azioni base
-Mod+Shift  navigazione estesa
-Mod+Ctrl   movimento o cambi di posizione
-Mod+Alt    stato non posizionale, layout o sessione
+[Modalita IntelliJ]
+Mod+Alt+I                               toggle shortcut niri
+Mod+Backslash                           help anche in mod. minimale
 
-Preferire lettere normali e frecce. Evitare tasti dipendenti dal layout
-o simboli, salvo motivo forte. Hardware, Print, XF86* e WheelScroll*
-sono eccezioni accettate.
+[Linee guida]
+Mod                                     navigazione e azioni base
+Mod+Shift                               navigazione estesa
+Mod+Ctrl                                movimento o posizione
+Mod+Alt                                 stato, layout o sessione
+Lettere e frecce                        preferite per i keybind
+Simboli/layout                          evitare salvo motivo forte
+Hardware, Print, XF86*, WheelScroll*    eccezioni accettate
 
-Apps / shell
-------------
-Mod+A          Application Launcher
-Mod+T          Terminal
-Mod+S          Settings
-Mod+M          System Monitor
-Mod+N          Notification Center
-Mod+Shift+N    Notepad / note card
-Mod+V          Clipboard Manager
-Mod+Y          Browse Wallpapers
-Mod+B          Browser
-Mod+E          File Manager
-Mod+Alt+L      Lock Screen
-Mod+Alt+P      Power Menu
-Mod+Backslash  Keybinds Summary
+[Navigazione]
+Mod+Left / Right                        colonna sinistra/destra
+Mod+J / K                               finestra sotto/sopra
+Mod+Up / Down                           workspace sopra/sotto
+Mod+1..9                                workspace 1..9
+Mod+Home / End                          prima/ultima colonna
+Mod+Shift+frecce                        monitor direzionale
 
-Sessione / Sistema
-------------------
-Mod+Alt+O      Show hotkey overlay
-Mod+D          Overview
-Mod+Tab        Overview
-Ctrl+Alt+Del   Quit niri
-Mod+Shift+P    Power off monitors
+[Spostamento / Posizione]
+Mod+Ctrl+Left / Right                   sposta colonna sinistra/destra
+Mod+Ctrl+Up / Down                      sposta finestra sopra/sotto
+Mod+Ctrl+1..9                           sposta colonna al workspace
+Mod+Ctrl+I / U                          colonna workspace su/giu
+Mod+Ctrl+Shift+I / U                    sposta workspace su/giu
+Mod+Ctrl+Home / End                     colonna all'inizio/fine
+Mod+Ctrl+Shift+frecce                   colonna al monitor
+Mod+Ctrl+A / D                          consume/expel left/right
+Mod+Ctrl+E                              expel-window-from-column
 
-Audio / Media / Luminosita
---------------------------
-XF86AudioRaiseVolume / LowerVolume / Mute / MicMute
-XF86AudioPlay / Pause / Next / Prev
-Ctrl+XF86AudioRaiseVolume / LowerVolume  MPRIS seek +3s / -3s
-XF86MonBrightnessUp / Down
+[Layout / Stato Finestra]
+Mod+Alt+F                               fullscreen
+Mod+Alt+M                               maximize column
+Mod+Alt+E                               expand column width
+Mod+Alt+W                               preset column width
+Mod+Alt+H                               preset window height
+Mod+Alt+R                               reset window height
+Mod+Alt+T                               toggle floating
+Mod+Alt+B                               toggle tabbed display
+Mod+Alt+C                               center visible columns
+Mod+Alt+Left / Right                    larghezza colonna giu/su
+Mod+Alt+K / J                           altezza finestra su/giu
+Mod+Shift+V                             focus floating/tiling
 
-Navigazione
------------
-Mod+Left/Right      colonna sinistra/destra
-Mod+J/K             finestra sotto/sopra
-Mod+Up/Down         workspace sopra/sotto
-Mod+1..9            workspace 1..9
-Mod+Home/End        prima/ultima colonna
-Mod+Shift+frecce    monitor sinistra/destra/sopra/sotto
+[Apps / shell]
+Mod+A                                   Application Launcher
+Mod+T                                   Terminal
+Mod+S                                   Settings
+Mod+M                                   System Monitor
+Mod+N                                   Notification Center
+Mod+Shift+N                             Notepad / note card
+Mod+V                                   Clipboard Manager
+Mod+B                                   Browser
+Mod+E                                   File Manager
+Mod+Alt+L                               Lock Screen
+Mod+Alt+P                               Power Menu
+Mod+Backslash                           Keybinds Summary
 
-Alt-Tab
--------
-Alt+Tab        prossima finestra sullo schermo
-Alt+Shift+Tab  finestra precedente sullo schermo
-Alt+A          prossima finestra della stessa app
-Alt+Shift+A    finestra precedente della stessa app
+[Sessione / Sistema]
+Mod+Alt+I                               Toggle IntelliJ keybind mode
+Mod+Alt+O                               Show hotkey overlay
+Mod+Tab                                 Overview
+Ctrl+Alt+Del                            Quit niri
 
-Spostamento / Posizione
------------------------
-Mod+Ctrl+Left/Right          sposta colonna sinistra/destra
-Mod+Ctrl+Up/Down             sposta finestra sopra/sotto
-Mod+Ctrl+1..9                sposta colonna al workspace 1..9
-Mod+Ctrl+I/U                 sposta colonna al workspace sopra/sotto
-Mod+Ctrl+Shift+I/U           sposta workspace sopra/sotto
-Mod+Ctrl+Home/End            sposta colonna all'inizio/fine
-Mod+Ctrl+Shift+frecce        sposta colonna al monitor
-Mod+Ctrl+A/D                 consume-or-expel left/right
-Mod+Ctrl+E                   expel-window-from-column
+[Audio / Media / Luminosita]
+XF86AudioRaiseVolume                    volume su
+XF86AudioLowerVolume                    volume giu
+XF86AudioMute                           mute output
+XF86AudioMicMute                        mute input
+XF86AudioPlay / Pause                   play / pausa
+XF86AudioNext / Prev                    brano succ. / prec.
+Ctrl+XF86AudioRaiseVolume               MPRIS seek +3s
+Ctrl+XF86AudioLowerVolume               MPRIS seek -3s
+XF86MonBrightnessUp / Down              luminosita su / giu
 
-Layout / Stato Finestra
------------------------
-Mod+Alt+F    fullscreen
-Mod+Alt+M    maximize column
-Mod+Alt+E    expand column to available width
-Mod+Alt+W    preset column width
-Mod+Alt+H    preset window height
-Mod+Alt+R    reset window height
-Mod+Alt+T    toggle floating
-Mod+Alt+B    toggle tabbed display
-Mod+Alt+C    center visible columns
-Mod+Alt+K/J  aumenta/riduce altezza finestra
-Mod+Alt+U    riduce larghezza colonna
-Mod+Shift+V  switch focus floating/tiling
+[Alt-Tab]
+Alt+Tab                                 prossima finestra sullo schermo
+Alt+Shift+Tab                           finestra precedente sullo schermo
+Alt+A                                   prossima finestra stessa app
+Alt+Shift+A                             finestra precedente stessa app
 
-Screenshot
-----------
-Print / XF86Launch1        screenshot
-Ctrl+Print / Ctrl+XF86...  screenshot schermo
-Alt+Print / Alt+XF86...    screenshot finestra
+[Screenshot]
+Print / XF86Launch1                     screenshot
+Ctrl+Print / Ctrl+XF86Launch1           screenshot schermo
+Alt+Print / Alt+XF86Launch1             screenshot finestra
 
-Non replicati senza DMS
------------------------
-Mod+Alt+N    Rename Workspace DMS
-Mod+Shift+W  Create window rule DMS
-Mod+Alt+I    Toggle keybind mode DMS
+[Non replicati senza DMS]
+Mod+Alt+N                               Rename Workspace DMS
+Mod+Shift+W                             Create window rule DMS

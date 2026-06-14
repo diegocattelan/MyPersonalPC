@@ -10,12 +10,11 @@ binds {
     Mod+N hotkey-overlay-title="Notification Center" { spawn-sh "qs -c noctalia-shell ipc call notifications toggleHistory"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper addNoteCard \"\""; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle"; }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
     Mod+B hotkey-overlay-title="Open Browser" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn "nautilus"; }
     Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Alt+P hotkey-overlay-title="Power Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+Backslash hotkey-overlay-title="Keybinds Summary" { spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt"; }
+    Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" { spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt"; }
 
     // Media
     Ctrl+XF86AudioLowerVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media seekRelative -3"; }
@@ -72,7 +71,8 @@ binds {
     // Movement / position
     Mod+Ctrl+A { consume-or-expel-window-left; }
     Mod+Ctrl+D { consume-or-expel-window-right; }
-    Mod+Alt+U { set-column-width "-10%"; }
+    Mod+Alt+Left { set-column-width "-10%"; }
+    Mod+Alt+Right { set-column-width "+10%"; }
     Mod+Ctrl+End { move-column-to-last; }
     Mod+Alt+E { expand-column-to-available-width; }
     Mod+Shift+Left { focus-monitor-left; }
@@ -117,12 +117,11 @@ binds {
     Mod+Ctrl+Down { move-window-down; }
 
     // Session / system
-    Mod+D repeat=false { toggle-overview; }
+    Mod+Alt+I allow-inhibiting=false hotkey-overlay-title="Toggle IntelliJ Keybind Mode" { toggle-keyboard-shortcuts-inhibit; }
     Mod+Alt+O { show-hotkey-overlay; }
     Mod+Tab repeat=false { toggle-overview; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Ctrl+Alt+Delete { quit; }
-    Mod+Shift+P { power-off-monitors; }
 }
 
 recent-windows {

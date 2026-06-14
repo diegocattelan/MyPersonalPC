@@ -127,7 +127,11 @@ DMS is installed again:
 
 - `Mod+Alt+N`: rename workspace through DMS
 - `Mod+Shift+W`: create window rule through DMS
-- `Mod+Alt+I`: switch between DMS full/minimal keybind modes
+
+The old DMS full/minimal keybind file switch is not recreated. Use niri's native
+shortcut inhibitor instead: `Mod+Alt+I` toggles
+`toggle-keyboard-shortcuts-inhibit` for IntelliJ or other applications that need
+their own `Mod` shortcuts.
 
 ### Shortcut Help File
 
@@ -140,29 +144,38 @@ The visible shortcut summary lives at:
 It is opened by this binding in `~/.config/niri/cfg/keybinds.kdl`:
 
 ```kdl
-Mod+Backslash hotkey-overlay-title="Keybinds Summary" {
+Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" {
     spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt";
 }
 ```
+
+Keep `allow-inhibiting=false` on the help binding so `Mod+Backslash` still opens
+the help while shortcut inhibition is active.
 
 When changing key combinations in `~/.config/niri/cfg/keybinds.kdl`, update
 `~/.config/niri/cfg/keybinds-riepilogo.txt` in the same change so the help stays
 in sync.
 
 Create or refresh the help file by reading `cfg/keybinds.kdl` and grouping the
-bindings by purpose. Keep these section names so the document stays easy to scan:
+bindings by purpose. The help is a fixed-width two-column text file: first
+column for key/group, second column for action/note, with a maximum of 40
+characters per column and 80 characters per line. Keep the IntelliJ mode note
+first, then group the main window-management sections before app/session/media
+sections:
 
 ```text
-Niri keybinds
-=============
+Tasto / gruppo                          Azione / nota
+================================================================================
 
+Modalita IntelliJ
+Linee guida
+Navigazione
+Spostamento / Posizione
+Layout / Stato Finestra
 Apps / shell
 Sessione / Sistema
 Audio / Media / Luminosita
-Navigazione
 Alt-Tab
-Spostamento / Posizione
-Layout / Stato Finestra
 Screenshot
 Non replicati senza DMS
 ```
@@ -176,9 +189,13 @@ human-readable, and still validate niri after changing `cfg/keybinds.kdl`.
 The local keymap is meant to preserve muscle memory from the previous Dank/DMS
 configuration while using this system's available components:
 
-- `Mod+A`, `Mod+S`, `Mod+N`, `Mod+V`, `Mod+Y` call Noctalia panels or plugins.
+- `Mod+A`, `Mod+S`, `Mod+N`, and `Mod+V` call Noctalia panels or plugins.
 - `Mod+T` opens `alacritty`, because `kitty` is not installed.
-- `Mod+D` and `Mod+Tab` both toggle niri overview, matching the old behavior.
+- `Mod+Tab` toggles niri overview.
+- `Mod+Alt+I` toggles niri shortcut inhibition for IntelliJ keybind passthrough.
+- `Mod+Backslash` opens the shortcut help even when shortcut inhibition is active.
+- `Mod+Alt+Left/Right` changes column width and `Mod+Alt+J/K` changes window
+  height.
 - `Alt+Tab`, `Alt+Shift+Tab`, `Alt+A`, and `Alt+Shift+A` are configured through
   `recent-windows` to match the old Alt-Tab workflow.
 - Screenshots are on `Print`, `Ctrl+Print`, and `Alt+Print`, with `XF86Launch1`
