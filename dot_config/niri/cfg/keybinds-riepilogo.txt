@@ -30,7 +30,6 @@ Mod+Backslash  Keybinds Summary
 
 Sessione / Sistema
 ------------------
-Mod+Alt+Q      Quit niri
 Mod+Alt+O      Show hotkey overlay
 Mod+D          Overview
 Mod+Tab        Overview
