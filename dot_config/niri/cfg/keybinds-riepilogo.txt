@@ -1,6 +1,17 @@
 Niri keybinds
 =============
 
+Linee guida
+-----------
+Mod        navigazione e azioni base
+Mod+Shift  navigazione estesa
+Mod+Ctrl   movimento o cambi di posizione
+Mod+Alt    stato non posizionale, layout o sessione
+
+Preferire lettere normali e frecce. Evitare tasti dipendenti dal layout
+o simboli, salvo motivo forte. Hardware, Print, XF86* e WheelScroll*
+sono eccezioni accettate.
+
 Apps / shell
 ------------
 Mod+A          Application Launcher
