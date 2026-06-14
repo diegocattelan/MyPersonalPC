@@ -240,3 +240,28 @@ Useful logs:
 
 If the log mentions locked cache databases or `StorageAlreadyInUseException`,
 check for an already running IntelliJ process before deleting cache files.
+
+## Noctalia Clipboard History
+
+Noctalia clipboard history needs `cliphist` plus `wl-clipboard`. The live
+setting is in `~/.config/noctalia/settings.json`:
+
+```json
+"enableClipboardHistory": true
+```
+
+Noctalia starts the clipboard watchers only when the shell initializes. After
+installing `cliphist` or changing the clipboard history setting, restart the
+shell or log out and back in:
+
+```bash
+pkill qs
+qs -c noctalia-shell &
+```
+
+The watcher commands are:
+
+```text
+wl-paste --type text --watch cliphist store
+wl-paste --type image --watch cliphist store
+```
