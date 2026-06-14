@@ -298,8 +298,10 @@ overriding Noctalia, because they can mask the generated theme.
 
 ## Alacritty / Tmux
 
-Alacritty starts `tmux new-session -A -s main` by default through
-`~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches in a
-shared `main` tmux session. Alacritty invocations with an explicit command, for
-example `alacritty -e less ...`, still run that command instead of the default
-shell.
+Alacritty starts `tmux new-session` by default through
+`~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches inside
+tmux while giving each Alacritty window an independent tmux session. Do not use
+`tmux new-session -A -s main` here unless the intended behavior is to show the
+same tmux session in every terminal. Alacritty invocations with an explicit
+command, for example `alacritty -e less ...`, still run that command instead of
+the default shell.

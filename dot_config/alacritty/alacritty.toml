@@ -4,7 +4,7 @@ WINIT_X11_SCALE_FACTOR = "1"
 
 [terminal.shell]
 program = "/usr/bin/tmux"
-args = ["new-session", "-A", "-s", "main"]
+args = ["new-session"]
 
 [window]
 dynamic_padding = true
