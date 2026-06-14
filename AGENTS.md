@@ -280,3 +280,18 @@ Managed Noctalia settings include:
 
 Do not manage `~/.config/noctalia/plugins/clipper/pinned.json` by default,
 because it can contain clipboard-derived personal data.
+
+### Noctalia Theme Generation
+
+Noctalia's Alacritty template is enabled in
+`~/.config/noctalia/settings.json` under `templates.activeTemplates` with the
+`alacritty` id. The generated terminal theme lives at:
+
+```text
+~/.config/alacritty/themes/noctalia.toml
+```
+
+`~/.config/alacritty/alacritty.toml` imports that generated theme. Keep color
+palette sections such as `[colors.primary]`, `[colors.normal]`, and
+`[colors.bright]` out of the main Alacritty config unless deliberately
+overriding Noctalia, because they can mask the generated theme.
