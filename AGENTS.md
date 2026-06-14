@@ -265,3 +265,18 @@ The watcher commands are:
 wl-paste --type text --watch cliphist store
 wl-paste --type image --watch cliphist store
 ```
+
+## Noctalia Config
+
+Manage Noctalia settings in chezmoi as configuration, but do not add downloaded
+plugin code or runtime data wholesale.
+
+Managed Noctalia settings include:
+
+- `~/.config/noctalia/settings.json`
+- `~/.config/noctalia/plugins.json`
+- `~/.config/noctalia/colors.json`
+- plugin `settings.json` files, for example screen-toolkit and keybind-cheatsheet
+
+Do not manage `~/.config/noctalia/plugins/clipper/pinned.json` by default,
+because it can contain clipboard-derived personal data.
