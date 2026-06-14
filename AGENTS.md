@@ -295,3 +295,11 @@ Noctalia's Alacritty template is enabled in
 palette sections such as `[colors.primary]`, `[colors.normal]`, and
 `[colors.bright]` out of the main Alacritty config unless deliberately
 overriding Noctalia, because they can mask the generated theme.
+
+## Alacritty / Tmux
+
+Alacritty starts `tmux new-session -A -s main` by default through
+`~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches in a
+shared `main` tmux session. Alacritty invocations with an explicit command, for
+example `alacritty -e less ...`, still run that command instead of the default
+shell.
