@@ -1,0 +1,4 @@
+binds {
+    Mod+Alt+I allow-inhibiting=false hotkey-overlay-title="Disable IntelliJ Keybind Mode" { spawn "/home/birbante/.config/niri/cfg/keybind-mode" "full"; }
+    Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" { spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt"; }
+}

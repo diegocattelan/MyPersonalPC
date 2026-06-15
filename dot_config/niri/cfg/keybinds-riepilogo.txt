@@ -2,7 +2,8 @@ Tasto / gruppo                          Azione / nota
 ================================================================================
 
 [Modalita IntelliJ]
-Mod+Alt+I                               toggle shortcut niri
+Mod+Alt+I                               entra/esce modo IntelliJ
+Modo IntelliJ                           solo help e toggle restano
 Mod+Backslash                           help anche in mod. minimale
 
 [Linee guida]
@@ -62,7 +63,7 @@ Mod+Alt+P                               Power Menu
 Mod+Backslash                           Keybinds Summary
 
 [Sessione / Sistema]
-Mod+Alt+I                               Toggle IntelliJ keybind mode
+Mod+Alt+I                               Toggle modo IntelliJ
 Mod+Alt+O                               Show hotkey overlay
 Mod+Tab                                 Overview
 Ctrl+Alt+Del                            Quit niri

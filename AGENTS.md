@@ -128,10 +128,17 @@ DMS is installed again:
 - `Mod+Alt+N`: rename workspace through DMS
 - `Mod+Shift+W`: create window rule through DMS
 
-The old DMS full/minimal keybind file switch is not recreated. Use niri's native
-shortcut inhibitor instead: `Mod+Alt+I` toggles
-`toggle-keyboard-shortcuts-inhibit` for IntelliJ or other applications that need
-their own `Mod` shortcuts.
+The old DMS full/minimal keybind file switch is recreated locally for IntelliJ
+or other applications that need their own `Mod` shortcuts. `Mod+Alt+I` switches
+between:
+
+- `~/.config/niri/cfg/keybinds-full.kdl`: the complete shortcut set
+- `~/.config/niri/cfg/keybinds-minimal.kdl`: only `Mod+Alt+I` and
+  `Mod+Backslash`
+
+The active file included by niri remains `~/.config/niri/cfg/keybinds.kdl`.
+The switch is handled by `~/.config/niri/cfg/keybind-mode`, which copies the
+selected template, validates the full config, and reloads niri.
 
 ### Shortcut Help File
 
@@ -149,12 +156,13 @@ Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" {
 }
 ```
 
-Keep `allow-inhibiting=false` on the help binding so `Mod+Backslash` still opens
-the help while shortcut inhibition is active.
+Keep `allow-inhibiting=false` on the help binding and keep the same binding in
+`keybinds-minimal.kdl` so `Mod+Backslash` still opens the help in IntelliJ mode.
 
 When changing key combinations in `~/.config/niri/cfg/keybinds.kdl`, update
-`~/.config/niri/cfg/keybinds-riepilogo.txt` in the same change so the help stays
-in sync.
+`~/.config/niri/cfg/keybinds-full.kdl` and
+`~/.config/niri/cfg/keybinds-riepilogo.txt` in the same change so the full
+template and help stay in sync.
 
 Create or refresh the help file by reading `cfg/keybinds.kdl` and grouping the
 bindings by purpose. The help is a fixed-width two-column text file: first
@@ -192,8 +200,9 @@ configuration while using this system's available components:
 - `Mod+A`, `Mod+S`, `Mod+N`, and `Mod+V` call Noctalia panels or plugins.
 - `Mod+T` opens `alacritty`, because `kitty` is not installed.
 - `Mod+Tab` toggles niri overview.
-- `Mod+Alt+I` toggles niri shortcut inhibition for IntelliJ keybind passthrough.
-- `Mod+Backslash` opens the shortcut help even when shortcut inhibition is active.
+- `Mod+Alt+I` switches between full and minimal keybind templates for IntelliJ
+  keybind passthrough.
+- `Mod+Backslash` opens the shortcut help in both full and minimal modes.
 - `Mod+Alt+Left/Right` changes column width and `Mod+Alt+J/K` changes window
   height.
 - `Alt+Tab`, `Alt+Shift+Tab`, `Alt+A`, and `Alt+Shift+A` are configured through
