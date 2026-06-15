@@ -70,6 +70,13 @@ relevant file there:
 - `cfg/rules.kdl`: window rules
 - `cfg/misc.kdl`: environment and miscellaneous niri settings
 
+### Input Behavior
+
+The touchpad is configured in `~/.config/niri/cfg/input.kdl` with
+`disabled-on-external-mouse`, so niri/libinput suppresses touchpad events while
+an external mouse is connected. Keep this in the `touchpad` block rather than
+adding a separate hotplug script.
+
 ### Validation
 
 After changing `~/.config/niri/cfg/keybinds.kdl` or any included niri
