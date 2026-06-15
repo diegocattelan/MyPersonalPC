@@ -366,6 +366,28 @@ RDP must still be enabled inside Windows and allowed by the Windows firewall.
 Because the VM uses libvirt NAT, `192.168.122.100` is directly reachable from
 the host, but not automatically from other devices on the Wi-Fi LAN.
 
+### Windows VM CPU Limit
+
+`win11` keeps 2 vCPUs visible to Windows, but libvirt limits the VM to about 1
+CPU core total with:
+
+```xml
+<cputune>
+  <global_period>100000</global_period>
+  <global_quota>100000</global_quota>
+</cputune>
+```
+
+This was applied live and persistently with:
+
+```bash
+virsh -c qemu:///system schedinfo win11 --set global_period=100000 --set global_quota=100000 --live --config
+```
+
+Use `global_quota=-1` to remove the limit, or set a higher quota to allow more
+CPU time. With `global_period=100000`, `global_quota=100000` means roughly 1 CPU
+core total, regardless of the number of vCPUs exposed to the guest.
+
 From Windows, host services exposed on the libvirt NAT address should be reached
 through `192.168.122.1`, for example `http://192.168.122.1:21090`.
 
@@ -389,6 +411,7 @@ Useful checks:
 virsh -c qemu:///system domiflist win11
 virsh -c qemu:///system net-dhcp-leases default
 virsh -c qemu:///system net-dumpxml default
+virsh -c qemu:///system schedinfo win11
 ss -ltnp
 curl -I http://192.168.122.1:21090
 journalctl -b --no-pager | rg 'UFW BLOCK|192\.168\.122|21090|21091|21080|3389'
