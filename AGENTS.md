@@ -321,3 +321,54 @@ tmux while giving each Alacritty window an independent tmux session. Do not use
 same tmux session in every terminal. Alacritty invocations with an explicit
 command, for example `alacritty -e less ...`, still run that command instead of
 the default shell.
+
+## Libvirt Windows VM / Docker Networking
+
+The Windows 11 libvirt VM is defined in the system libvirt instance, not the
+user session:
+
+```bash
+virsh -c qemu:///system list --all
+```
+
+Current network layout:
+
+```text
+VM:        win11
+Network:   default
+Mode:      libvirt NAT
+Bridge:    virbr0
+Host IP:   192.168.122.1/24
+DHCP:      192.168.122.2 - 192.168.122.254
+VM IP:     192.168.122.200/24
+Hostname:  JeegRobot
+MAC:       52:54:00:dd:99:94
+Model:     virtio
+```
+
+From Windows, host services exposed on the libvirt NAT address should be reached
+through `192.168.122.1`, for example `http://192.168.122.1:21090`.
+
+Docker publishes the local development services on the host, including ports
+`21080`, `21090`, and `21091`. If Windows can ping `192.168.122.1` but cannot
+open those ports, check UFW first. A UFW forward rule for `192.168.122.0/24` is
+not enough for this case, because the VM is connecting directly to the host, so
+the traffic hits the input chain on `virbr0`.
+
+Allow only the libvirt NAT subnet to reach those development ports:
+
+```bash
+sudo ufw allow in on virbr0 from 192.168.122.0/24 to 192.168.122.1 port 21080 proto tcp
+sudo ufw allow in on virbr0 from 192.168.122.0/24 to 192.168.122.1 port 21090 proto tcp
+sudo ufw allow in on virbr0 from 192.168.122.0/24 to 192.168.122.1 port 21091 proto tcp
+```
+
+Useful checks:
+
+```bash
+virsh -c qemu:///system domiflist win11
+virsh -c qemu:///system net-dhcp-leases default
+ss -ltnp
+curl -I http://192.168.122.1:21090
+journalctl -b --no-pager | rg 'UFW BLOCK|192\.168\.122|21090|21091|21080'
+```
