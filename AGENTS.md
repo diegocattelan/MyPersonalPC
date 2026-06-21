@@ -53,6 +53,20 @@ This keeps GitHub credentials out of dotfiles. The first authenticated HTTPS
 push may still need the user to provide GitHub credentials or a token
 interactively; after that Git can retrieve them from the local keyring.
 
+## Codex MCP Servers
+
+Codex MCP server configuration is managed in:
+
+```text
+~/.codex/config.toml
+```
+
+The configured `chrome-devtools` MCP server runs through:
+
+```bash
+npx -y chrome-devtools-mcp@latest
+```
+
 ## Niri Config
 
 The local niri configuration lives in `~/.config/niri`.

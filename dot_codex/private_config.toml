@@ -1,0 +1,17 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+[projects."/home/birbante"]
+trust_level = "trusted"
+
+[projects."/home/birbante/IdeaProjects/oci/vue-components"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[features]
+terminal_resize_reflow = true
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
