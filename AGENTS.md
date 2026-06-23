@@ -67,6 +67,23 @@ The configured `chrome-devtools` MCP server runs through:
 npx -y chrome-devtools-mcp@latest
 ```
 
+Serena is installed as a uv tool:
+
+```bash
+uv tool install -p 3.13 serena-agent
+```
+
+The `serena`, `serena-agent`, and `serena-hooks` commands are exposed through
+`~/.local/bin`, so keep that directory in the shell `PATH`. The global Serena
+configuration lives in `~/.serena/serena_config.yml`, initialised with the LSP
+backend by `serena init`.
+
+Codex starts Serena MCP from `~/.codex/config.toml` using the absolute command:
+
+```bash
+/home/birbante/.local/bin/serena start-mcp-server --project-from-cwd --context=codex
+```
+
 ## Niri Config
 
 The local niri configuration lives in `~/.config/niri`.

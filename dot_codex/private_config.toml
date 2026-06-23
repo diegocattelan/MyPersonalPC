@@ -14,4 +14,12 @@ terminal_resize_reflow = true
 
 [mcp_servers.chrome-devtools]
 command = "npx"
-args = ["-y", "chrome-devtools-mcp@latest"]
+args = ["-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"]
+
+[mcp_servers.chrome-devtools.tools.take_snapshot]
+approval_mode = "approve"
+
+[mcp_servers.serena]
+startup_timeout_sec = 15
+command = "/home/birbante/.local/bin/serena"
+args = ["start-mcp-server", "--project-from-cwd", "--context=codex"]
