@@ -3,7 +3,7 @@ Description=Serena MCP server for Codex
 
 [Service]
 Type=simple
-ExecStart=/home/birbante/.local/bin/serena start-mcp-server --context=codex --transport streamable-http --host 127.0.0.1 --port 9121 --enable-web-dashboard false --open-web-dashboard false
+ExecStart=/home/birbante/.local/bin/serena start-mcp-server --context=codex --transport streamable-http --host 127.0.0.1 --port 9121 --enable-web-dashboard true --open-web-dashboard true
 Restart=on-failure
 RestartSec=5s
 

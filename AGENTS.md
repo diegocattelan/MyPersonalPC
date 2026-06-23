@@ -91,12 +91,13 @@ systemctl --user status serena-mcp.service
 ```
 
 It starts Serena without an initial project so it does not scan the whole home
-directory at login. When using Serena tools in a Codex session, activate the
-current repository explicitly with Serena's `activate_project` tool. The service
-command is:
+directory at login. The Serena web dashboard is enabled and opened on service
+startup. When using Serena tools in a Codex session, activate the current
+repository explicitly with Serena's `activate_project` tool. The service command
+is:
 
 ```bash
-/home/birbante/.local/bin/serena start-mcp-server --context=codex --transport streamable-http --host 127.0.0.1 --port 9121 --enable-web-dashboard false --open-web-dashboard false
+/home/birbante/.local/bin/serena start-mcp-server --context=codex --transport streamable-http --host 127.0.0.1 --port 9121 --enable-web-dashboard true --open-web-dashboard true
 ```
 
 ## Niri Config
