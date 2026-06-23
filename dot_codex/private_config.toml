@@ -20,6 +20,4 @@ args = ["-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"]
 approval_mode = "approve"
 
 [mcp_servers.serena]
-startup_timeout_sec = 15
-command = "/home/birbante/.local/bin/serena"
-args = ["start-mcp-server", "--project-from-cwd", "--context=codex"]
+url = "http://127.0.0.1:9121/mcp"

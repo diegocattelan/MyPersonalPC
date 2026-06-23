@@ -78,10 +78,25 @@ The `serena`, `serena-agent`, and `serena-hooks` commands are exposed through
 configuration lives in `~/.serena/serena_config.yml`, initialised with the LSP
 backend by `serena init`.
 
-Codex starts Serena MCP from `~/.codex/config.toml` using the absolute command:
+Codex connects to Serena MCP over streamable HTTP:
+
+```text
+http://127.0.0.1:9121/mcp
+```
+
+The persistent user service is:
 
 ```bash
-/home/birbante/.local/bin/serena start-mcp-server --project-from-cwd --context=codex
+systemctl --user status serena-mcp.service
+```
+
+It starts Serena without an initial project so it does not scan the whole home
+directory at login. When using Serena tools in a Codex session, activate the
+current repository explicitly with Serena's `activate_project` tool. The service
+command is:
+
+```bash
+/home/birbante/.local/bin/serena start-mcp-server --context=codex --transport streamable-http --host 127.0.0.1 --port 9121 --enable-web-dashboard false --open-web-dashboard false
 ```
 
 ## Niri Config
