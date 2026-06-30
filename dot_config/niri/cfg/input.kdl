@@ -4,7 +4,7 @@
 input {
     keyboard {
         xkb {
-            layout "it,gb"
+            layout "it,us"
             options "grp:win_space_toggle,compose:caps"
         }
         numlock // Enable numlock on startup
