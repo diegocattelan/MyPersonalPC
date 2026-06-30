@@ -124,6 +124,10 @@ The touchpad is configured in `~/.config/niri/cfg/input.kdl` with
 an external mouse is connected. Keep this in the `touchpad` block rather than
 adding a separate hotplug script.
 
+Keyboard layouts are configured in `~/.config/niri/cfg/input.kdl` with XKB
+layouts `it,gb`. Use `Mod+Space` to switch between the Italian layout and the
+English UK ISO layout.
+
 ### Validation
 
 After changing `~/.config/niri/cfg/keybinds.kdl` or any included niri
