@@ -126,7 +126,8 @@ adding a separate hotplug script.
 
 Keyboard layouts are configured in `~/.config/niri/cfg/input.kdl` with XKB
 layouts `it,gb`. Use `Mod+Space` to switch between the Italian layout and the
-English UK ISO layout.
+English UK ISO layout. Caps Lock is configured as the Compose key with
+`compose:caps`.
 
 ### Validation
 
