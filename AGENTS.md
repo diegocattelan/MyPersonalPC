@@ -309,6 +309,42 @@ Useful logs:
 If the log mentions locked cache databases or `StorageAlreadyInUseException`,
 check for an already running IntelliJ process before deleting cache files.
 
+### IntelliJ / JetBrains Limits
+
+Large JetBrains projects need higher inotify and file descriptor limits. The
+live system files are:
+
+```text
+/etc/sysctl.d/90-jetbrains-idea.conf
+/etc/security/limits.d/90-jetbrains-idea.conf
+/etc/systemd/user.conf.d/90-jetbrains-idea.conf
+```
+
+The configured values are:
+
+```text
+fs.inotify.max_user_watches = 1048576
+fs.inotify.max_user_instances = 2048
+fs.inotify.max_queued_events = 32768
+DefaultLimitNOFILE = 1048576
+birbante nofile = 1048576
+```
+
+Because normal chezmoi applies target the home directory, these root-owned
+files are maintained by the chezmoi source script:
+
+```text
+~/.local/share/chezmoi/run_onchange_after_90-jetbrains-idea-limits.sh
+```
+
+It uses `sudo` to install the files under `/etc` and reloads the sysctl values.
+Verify with:
+
+```bash
+sysctl fs.inotify.max_user_watches fs.inotify.max_user_instances fs.inotify.max_queued_events
+cat /proc/$(pgrep -n -f 'intellij-idea/bin/idea')/limits | rg 'Max open files'
+```
+
 ## Noctalia Clipboard History
 
 Noctalia clipboard history needs `cliphist` plus `wl-clipboard`. The live
