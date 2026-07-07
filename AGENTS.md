@@ -422,6 +422,10 @@ symbols in the Nerd Font private-use ranges rather than emoji fallback glyphs;
 for CachyOS, map the OS symbol explicitly because Starship's default is not the
 desired terminal icon.
 
+Existing tmux panes keep already-rendered prompt text in their visible buffer.
+After changing Starship symbols or terminal fonts, press Enter in old panes to
+draw a fresh prompt and use `Ctrl-L` if the stale prompt remains visible.
+
 Alacritty starts `tmux new-session` by default through
 `~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches inside
 tmux while giving each Alacritty window an independent tmux session. Do not use
