@@ -423,15 +423,16 @@ for glyphs that may not be covered or selected correctly by the primary terminal
 font.
 
 Starship configuration lives in `~/.config/starship.toml`. The active prompt is
-intentionally simple and ASCII-only to avoid terminal/font rendering problems.
-The previous glyph-heavy Starship config is backed up at:
+the glyph-heavy multi-line prompt restored after installing FiraCode Nerd Font
+and Symbols Nerd Font fallbacks. A timestamped backup of this restored prompt is
+kept at:
 
 ```text
 ~/.config/starship.toml.backup-20260707-233053
 ```
 
-If a glyph-heavy prompt is restored later, avoid emoji fallback glyphs; use only
-known Nerd Font private-use symbols and test inside Alacritty and tmux.
+Avoid emoji fallback glyphs in this prompt; use only known Nerd Font private-use
+symbols and test inside Alacritty and tmux after changes.
 
 Existing tmux panes keep already-rendered prompt text in their visible buffer.
 After changing Starship symbols or terminal fonts, press Enter in old panes to
