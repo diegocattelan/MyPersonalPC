@@ -434,6 +434,12 @@ kept at:
 Avoid emoji fallback glyphs in this prompt; use only known Nerd Font private-use
 symbols and test inside Alacritty and tmux after changes.
 
+The prompt layout uses independent rounded capsule segments rather than one
+continuous powerline chain. Keep optional modules such as git, language
+runtimes, Docker, Kubernetes, command duration, and status self-contained with
+their own opening and closing glyphs so disabled or inactive modules do not
+leave empty separators behind.
+
 ble.sh is disabled in `~/.bashrc.d/90-blesh.sh` because it reparses `PS1` and
 downgrades Starship's truecolor prompt escapes from 24-bit colors to indexed
 ANSI colors. Keep Starship initialisation in `~/.bashrc.d/95-starship-prompt.sh`
