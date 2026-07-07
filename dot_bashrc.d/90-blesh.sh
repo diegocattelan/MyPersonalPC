@@ -1,3 +1,7 @@
+# Disabled because ble.sh reparses PS1 and downgrades Starship truecolor prompt
+# escapes from 24-bit colors to indexed ANSI colors.
+return 0
+
 # Enhanced Bash line editor: autosuggestions, syntax highlighting and better completion.
 # Keep this late in the Bash startup sequence so it can wrap readline/completion.
 if [[ $- == *i* && -t 0 && -t 1 ]]; then

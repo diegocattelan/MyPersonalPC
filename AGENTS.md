@@ -434,6 +434,11 @@ kept at:
 Avoid emoji fallback glyphs in this prompt; use only known Nerd Font private-use
 symbols and test inside Alacritty and tmux after changes.
 
+ble.sh is disabled in `~/.bashrc.d/90-blesh.sh` because it reparses `PS1` and
+downgrades Starship's truecolor prompt escapes from 24-bit colors to indexed
+ANSI colors. Keep Starship initialisation in `~/.bashrc.d/95-starship-prompt.sh`
+after the disabled ble.sh hook.
+
 Existing tmux panes keep already-rendered prompt text in their visible buffer.
 After changing Starship symbols or terminal fonts, press Enter in old panes to
 draw a fresh prompt and use `Ctrl-L` if the stale prompt remains visible.
@@ -445,6 +450,16 @@ tmux while giving each Alacritty window an independent tmux session. Do not use
 same tmux session in every terminal. Alacritty invocations with an explicit
 command, for example `alacritty -e less ...`, still run that command instead of
 the default shell.
+
+The tmux configuration lives in `~/.tmux.conf`. It keeps
+`default-terminal` on `tmux-256color` and enables RGB/truecolor for
+`xterm-256color`, `alacritty`, and `xterm-kitty` clients. If Starship colors look
+flattened or indexed again, check `tmux capture-pane -e` for `38;2`/`48;2`
+escapes and reload with:
+
+```bash
+tmux source-file ~/.tmux.conf
+```
 
 ## Libvirt Windows VM / Docker Networking
 
