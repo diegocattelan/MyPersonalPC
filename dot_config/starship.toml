@@ -27,20 +27,20 @@ $cmd_duration\
 $status\
 $line_break$character"""
 
-palette = 'gruvbox_dark'
+palette = 'lcars_dark'
 
-[palettes.gruvbox_dark]
-color_bg_console='#000000'
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
+[palettes.lcars_dark]
+color_bg_console = '#050505'
+color_fg0 = '#fff2cc'
+color_bg1 = '#241b35'
+color_bg3 = '#44375f'
+color_blue = '#6699ff'
+color_aqua = '#4dd4c6'
+color_green = '#a7f070'
+color_orange = '#ff9f1c'
+color_purple = '#b18cff'
+color_red = '#ff4f5e'
+color_yellow = '#ffd166'
 
 [os]
 disabled = false
@@ -185,12 +185,12 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:color_green)'
-error_symbol = '[](bold fg:color_red)'
-vimcmd_symbol = '[](bold fg:color_green)'
-vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
-vimcmd_replace_symbol = '[](bold fg:color_purple)'
-vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+success_symbol = '[](fg:color_orange)[ OPS ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
+error_symbol = '[](fg:color_red)[ ALERT ](bold fg:color_bg_console bg:color_red)[](fg:color_red bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
+vimcmd_symbol = '[](fg:color_aqua)[ NAV ](bold fg:color_bg_console bg:color_aqua)[](fg:color_aqua bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+vimcmd_replace_one_symbol = '[](fg:color_purple)[ REPL ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+vimcmd_replace_symbol = '[](fg:color_purple)[ REPL ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+vimcmd_visual_symbol = '[](fg:color_yellow)[ VIS ](bold fg:color_bg_console bg:color_yellow)[](fg:color_yellow bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
 
 [kubernetes]
 disabled = false

@@ -423,9 +423,11 @@ for glyphs that may not be covered or selected correctly by the primary terminal
 font.
 
 Starship configuration lives in `~/.config/starship.toml`. The active prompt is
-the glyph-heavy multi-line prompt restored after installing FiraCode Nerd Font
-and Symbols Nerd Font fallbacks. A timestamped backup of this restored prompt is
-kept at:
+an LCARS-inspired glyph-heavy multi-line prompt using a black, amber, purple,
+blue, and red palette. The command marker intentionally uses wide capsule
+labels such as `OPS`, `ALERT`, `NAV`, `REPL`, and `VIS` instead of a small
+single-glyph arrow. A timestamped backup of the original restored prompt is kept
+at:
 
 ```text
 ~/.config/starship.toml.backup-20260707-233053
