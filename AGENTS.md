@@ -402,6 +402,10 @@ overriding Noctalia, because they can mask the generated theme.
 
 ## Alacritty / Tmux
 
+Alacritty uses `FiraCode Nerd Font Mono` so Starship prompt icons render
+correctly. Keep the Arch package `ttf-firacode-nerd` installed when restoring
+this setup.
+
 Alacritty starts `tmux new-session` by default through
 `~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches inside
 tmux while giving each Alacritty window an independent tmux session. Do not use

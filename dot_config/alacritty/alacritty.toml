@@ -32,19 +32,19 @@ draw_bold_text_with_bright_colors = true
 size = 12
 
 [font.normal]
-family = "monospace"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "monospace"
+family = "FiraCode Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "monospace"
+family = "FiraCode Nerd Font Mono"
 style = "Italic"
 
 [font.bold_italic]
-family = "monospace"
+family = "FiraCode Nerd Font Mono"
 style = "Bold Italic"
 
 [selection]
