@@ -403,8 +403,24 @@ overriding Noctalia, because they can mask the generated theme.
 ## Alacritty / Tmux
 
 Alacritty uses `FiraCode Nerd Font Mono` so Starship prompt icons render
-correctly. Keep the Arch package `ttf-firacode-nerd` installed when restoring
-this setup.
+correctly. FiraCode Nerd Font is managed from the upstream Nerd Fonts download
+page, not by storing font binaries in chezmoi. The chezmoi source script
+`run_onchange_after_80-firacode-nerd-font.sh` downloads the official FiraCode
+zip from `https://www.nerdfonts.com/font-downloads` /
+`https://github.com/ryanoasis/nerd-fonts` and installs it under:
+
+```text
+~/.local/share/fonts/nerd-fonts/FiraCode
+```
+
+Refresh it with `chezmoi apply` after changing the version in the script. The
+Arch package `ttf-firacode-nerd` provides the same family and can remain
+installed as a system fallback.
+
+Starship configuration lives in `~/.config/starship.toml`. Keep its prompt
+symbols in the Nerd Font private-use ranges rather than emoji fallback glyphs;
+for CachyOS, map the OS symbol explicitly because Starship's default is not the
+desired terminal icon.
 
 Alacritty starts `tmux new-session` by default through
 `~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches inside
