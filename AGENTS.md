@@ -424,10 +424,11 @@ font.
 
 Starship configuration lives in `~/.config/starship.toml`. The active prompt is
 an LCARS-inspired glyph-heavy multi-line prompt using a black, amber, purple,
-blue, and red palette. The command marker intentionally uses wide capsule
-labels such as `OPS`, `ALERT`, `NAV`, `REPL`, and `VIS` instead of a small
-single-glyph arrow. A timestamped backup of the original restored prompt is kept
-at:
+blue, and red palette. Its structure is: LCARS status header, system identity
+row, location/context row, telemetry row, and a wide command marker such as
+`COMPUTER READY`, `RED ALERT DIAG`, `NAV`, `REPL`, or `VIS` instead of a small
+single-glyph arrow. A timestamped backup of the original restored prompt is
+kept at:
 
 ```text
 ~/.config/starship.toml.backup-20260707-233053

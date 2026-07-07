@@ -1,10 +1,13 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
+[](fg:color_orange)[ LCARS ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[ OPS-204 ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple bg:color_blue)[ ONLINE ](bold fg:color_fg0 bg:color_blue)[ ](fg:color_blue)\
+\n\
 $os\
 $username\
 $hostname\
 $localip\
+\n\
 $directory\
 $git_branch\
 $git_status\
@@ -45,7 +48,7 @@ color_yellow = '#ffd166'
 [os]
 disabled = false
 style = "bg:color_orange fg:color_fg0"
-format = '[](fg:color_orange)[$symbol]($style)'
+format = '[](fg:color_orange)[ SYS $symbol]($style)'
 
 [os.symbols]
 Windows = "󰍲"
@@ -73,23 +76,23 @@ RedHatEnterprise = "󱄛"
 show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
-format = '[ $user ]($style)'
+format = '[ CREW $user ]($style)'
 
 [hostname]
 disabled = false
 ssh_only = false
-format = '[ @ $hostname]($style)[ ](fg:color_orange)'
+format = '[ NODE $hostname ]($style)[ ](fg:color_orange)'
 style = "bg:color_orange fg:color_fg0"
 
 [localip]
 ssh_only = false
-format = '[](fg:color_orange)[ \($localipv4\)]($style)[ ](fg:color_orange)'
+format = '[](fg:color_orange)[ LINK $localipv4 ]($style)[ ](fg:color_orange)'
 style = "bg:color_orange fg:color_fg0"
 disabled = false
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
-format = "[](fg:color_yellow)[ $path ]($style)[ ](fg:color_yellow)"
+format = "[](fg:color_yellow)[ LOC $path ]($style)[ ](fg:color_yellow)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -103,101 +106,101 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:color_aqua"
-format = '[](fg:color_aqua)[ git $symbol $branch ](fg:color_fg0 bg:color_aqua)'
+format = '[](fg:color_aqua)[ GIT $symbol $branch ](fg:color_bg_console bg:color_aqua)'
 
 [git_status]
 style = "bg:color_aqua"
-format = '[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)[ ](fg:color_aqua)'
+format = '[($all_status$ahead_behind )](fg:color_bg_console bg:color_aqua)[ ](fg:color_aqua)'
 
 [nodejs]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [c]
 symbol = " "
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [rust]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [golang]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [php]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [java]
 symbol = " "
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [kotlin]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [haskell]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [python]
 symbol = ""
 style = "bg:color_blue"
-format = '[](fg:color_blue)[ $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
+format = '[](fg:color_blue)[ CORE $symbol( $version) ](fg:color_fg0 bg:color_blue)[ ](fg:color_blue)'
 
 [docker_context]
 symbol = ""
 style = "bg:color_bg3"
-format = '[](fg:color_bg3)[ $symbol( $context) ](fg:#83a598 bg:color_bg3)[ ](fg:color_bg3)'
+format = '[](fg:color_bg3)[ DOCK $symbol( $context) ](fg:#fff2cc bg:color_bg3)[ ](fg:color_bg3)'
 
 [conda]
 style = "bg:color_bg3"
-format = '[](fg:color_bg3)[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)[ ](fg:color_bg3)'
+format = '[](fg:color_bg3)[ ENV $symbol( $environment) ](fg:#fff2cc bg:color_bg3)[ ](fg:color_bg3)'
 
 [time]
 disabled = false
 time_format = "%a %d %B %y   %R"
 style = "bg:color_bg1"
-format = '[](fg:color_bg1)[  $time ](fg:color_fg0 bg:color_bg1)[ ](fg:color_bg1)'
+format = '[](fg:color_bg1)[ STARDATE $time ](fg:color_fg0 bg:color_bg1)[ ](fg:color_bg1)'
 
 [cmd_duration]
 min_time = 1000
 style = "bg:color_bg3 fg:color_fg0"
-format = '[](fg:color_bg3)[  $duration ]($style)[ ](fg:color_bg3)'
+format = '[](fg:color_bg3)[ CYCLE $duration ]($style)[ ](fg:color_bg3)'
 
 [status]
 disabled = false
 style = "bg:color_red fg:color_fg0"
 symbol = ""
-format = '[](fg:color_red)[ $symbol $status ]($style)[ ](fg:color_red)'
+format = '[](fg:color_red)[ ALERT $symbol $status ]($style)[ ](fg:color_red)'
 
 [line_break]
 disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](fg:color_orange)[ OPS ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
-error_symbol = '[](fg:color_red)[ ALERT ](bold fg:color_bg_console bg:color_red)[](fg:color_red bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
-vimcmd_symbol = '[](fg:color_aqua)[ NAV ](bold fg:color_bg_console bg:color_aqua)[](fg:color_aqua bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
-vimcmd_replace_one_symbol = '[](fg:color_purple)[ REPL ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
-vimcmd_replace_symbol = '[](fg:color_purple)[ REPL ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
-vimcmd_visual_symbol = '[](fg:color_yellow)[ VIS ](bold fg:color_bg_console bg:color_yellow)[](fg:color_yellow bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+success_symbol = '[](fg:color_orange)[ COMPUTER ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[ READY ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+error_symbol = '[](fg:color_red)[ RED ALERT ](bold fg:color_bg_console bg:color_red)[](fg:color_red bg:color_purple)[ DIAG ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple bg:color_blue)[  ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue)'
+vimcmd_symbol = '[](fg:color_aqua)[ COMPUTER ](bold fg:color_bg_console bg:color_aqua)[](fg:color_aqua bg:color_blue)[ NAV ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
+vimcmd_replace_one_symbol = '[](fg:color_purple)[ COMPUTER ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[ REPL ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue bg:color_orange)[  ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange)'
+vimcmd_replace_symbol = '[](fg:color_purple)[ COMPUTER ](bold fg:color_bg_console bg:color_purple)[](fg:color_purple bg:color_blue)[ REPL ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue bg:color_orange)[  ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange)'
+vimcmd_visual_symbol = '[](fg:color_yellow)[ COMPUTER ](bold fg:color_bg_console bg:color_yellow)[](fg:color_yellow bg:color_blue)[ VIS ](bold fg:color_fg0 bg:color_blue)[](fg:color_blue bg:color_purple)[  ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple)'
 
 [kubernetes]
 disabled = false
 detect_env_vars = ['KUBECONFIG']
 style = "bg:color_bg1 fg:color_green"
-format = '[](fg:color_bg1)[ $symbol $context( \($namespace\))]($style)[ ](fg:color_bg1)'
+format = '[](fg:color_bg1)[ KUBE $symbol $context( \($namespace\))]($style)[ ](fg:color_bg1)'
 
 [env_var.KUBECONFIG]
 style="bg:color_bg1 fg:color_green"
-format='[](fg:color_bg1)[ $env_value]($style)[ ](fg:color_bg1)'
+format='[](fg:color_bg1)[ CFG $env_value]($style)[ ](fg:color_bg1)'
