@@ -417,6 +417,11 @@ Refresh it with `chezmoi apply` after changing the version in the script. The
 Arch package `ttf-firacode-nerd` provides the same family and can remain
 installed as a system fallback.
 
+Install `ttf-nerd-fonts-symbols` and `ttf-nerd-fonts-symbols-mono` as Nerd Font
+symbol fallbacks. They provide `Symbols Nerd Font` and `Symbols Nerd Font Mono`
+for glyphs that may not be covered or selected correctly by the primary terminal
+font.
+
 Starship configuration lives in `~/.config/starship.toml`. The active prompt is
 intentionally simple and ASCII-only to avoid terminal/font rendering problems.
 The previous glyph-heavy Starship config is backed up at:
