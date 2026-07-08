@@ -151,6 +151,46 @@ If niri is running and the config validates, reload it with:
 niri msg action load-config-file
 ```
 
+### CachyOS GPU / NVIDIA
+
+This host is a hybrid Intel/NVIDIA laptop. The internal eDP panel is on the
+Intel DRM device, while the external HDMI output is on the NVIDIA DRM device.
+The intended CachyOS-managed graphics profile is:
+
+```text
+nvidia-open-dkms.prime
+intel-lpmd
+intel
+```
+
+Keep CHWD as the owner of this GPU profile. Do not manually mix the profile with
+the `nvidia-580xx-*`, `opencl-nvidia-580xx`, or `lib32-nvidia-580xx-*` packages;
+the restored CachyOS stack uses the generic/open packages such as
+`nvidia-utils`, `opencl-nvidia`, `lib32-nvidia-utils`,
+`lib32-opencl-nvidia`, `linux-cachyos-nvidia-open`, and
+`linux-cachyos-lts-nvidia-open`.
+
+CHWD generates `/etc/mkinitcpio.conf.d/10-chwd.conf` with:
+
+```text
+MODULES+=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+```
+
+It also owns the NVIDIA RTD3 workaround files under `/etc/profile.d/` and
+`/usr/lib/systemd/user-environment-generators/`, and enables
+`nvidia-powerd.service` plus `switcheroo-control.service`. After changing the
+GPU profile or NVIDIA packages, run `mkinitcpio -P` so the CachyOS/Limine boot
+entries are refreshed, then reboot. If `nvidia-smi` reports a driver/library
+version mismatch before rebooting, it usually means the userspace NVIDIA package
+has changed while the currently loaded kernel module is still from the previous
+boot.
+
+Niri has previously rendered on Intel `/dev/dri/renderD128` while presenting the
+external HDMI output through NVIDIA. If external-monitor animations still stutter
+after the restored open driver stack has been rebooted into, check the niri logs
+for vblank warnings before testing a NVIDIA render-node override such as
+`debug { render-drm-device "/dev/dri/renderD129" }`.
+
 ### Keybind Grammar
 
 These shortcuts were adapted from the previous Dank Linux / DMS setup. Keep the
