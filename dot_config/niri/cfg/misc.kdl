@@ -16,6 +16,9 @@
     }
 
     debug {
+        // Prefer the NVIDIA render node for smoother external HDMI output.
+        render-drm-device "/dev/dri/by-path/pci-0000:01:00.0-render"
+
         // Allows notification actions and window activation from Noctalia.
         honor-xdg-activation-with-invalid-serial
     }

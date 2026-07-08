@@ -185,11 +185,17 @@ version mismatch before rebooting, it usually means the userspace NVIDIA package
 has changed while the currently loaded kernel module is still from the previous
 boot.
 
-Niri has previously rendered on Intel `/dev/dri/renderD128` while presenting the
-external HDMI output through NVIDIA. If external-monitor animations still stutter
-after the restored open driver stack has been rebooted into, check the niri logs
-for vblank warnings before testing a NVIDIA render-node override such as
-`debug { render-drm-device "/dev/dri/renderD129" }`.
+Niri has previously rendered on the Intel render node while presenting the
+external HDMI output through NVIDIA, which can trigger vblank warnings and
+stutter on the external monitor. Use the stable NVIDIA by-path symlink in
+`~/.config/niri/cfg/misc.kdl` instead of hardcoding a `renderD*` number, because
+those numbers can change across boots:
+
+```kdl
+debug {
+    render-drm-device "/dev/dri/by-path/pci-0000:01:00.0-render"
+}
+```
 
 ### Keybind Grammar
 
