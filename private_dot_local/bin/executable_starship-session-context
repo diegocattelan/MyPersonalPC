@@ -1,0 +1,57 @@
+#!/bin/sh
+set -eu
+
+starship_cmd() {
+  command -v starship >/dev/null 2>&1 || return 1
+  command -v starship
+}
+
+module_output() {
+  module=$1
+  status=${STARSHIP_CMD_STATUS:-0}
+  cmd=$(starship_cmd) || return 1
+
+  "$cmd" module "$module" --status "$status" 2>/dev/null || true
+}
+
+rail_rgb() {
+  if [ "${STARSHIP_CMD_STATUS:-0}" -eq 0 ] 2>/dev/null; then
+    printf '153;153;51'
+  else
+    printf '207;79;79'
+  fi
+}
+
+emit_row() {
+  content=$1
+  [ -n "$content" ] || return 1
+
+  if [ "$printed" -eq 1 ]; then
+    printf '\n'
+  fi
+  printed=1
+
+  printf '\033[38;2;%sm█\033[0m%s' "$rail_color" "$content"
+}
+
+printed=0
+check_only=0
+
+if [ "${1:-}" = "--check" ]; then
+  check_only=1
+fi
+
+rail_color=$(rail_rgb)
+
+for module in conda docker_context kubernetes env_var.KUBECONFIG; do
+  context=$(module_output "$module")
+  [ -n "$context" ] || continue
+
+  if [ "$check_only" -eq 1 ]; then
+    exit 0
+  fi
+  emit_row "$context"
+done
+
+[ "$printed" -eq 1 ] || exit 1
+printf '\n'

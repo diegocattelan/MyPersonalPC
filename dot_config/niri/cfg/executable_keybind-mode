@@ -1,36 +1,52 @@
 #!/bin/sh
 set -eu
 
-CFG_DIR="/home/birbante/.config/niri/cfg"
-CONFIG_FILE="/home/birbante/.config/niri/config.kdl"
-ACTIVE_FILE="$CFG_DIR/keybinds.kdl"
+keybind_mode_linux() {
+    CFG_DIR="/home/birbante/.config/niri/cfg"
+    CONFIG_FILE="/home/birbante/.config/niri/config.kdl"
+    ACTIVE_FILE="$CFG_DIR/keybinds.kdl"
 
-case "${1:-}" in
-    full)
-        TEMPLATE_FILE="$CFG_DIR/keybinds-full.kdl"
-        ;;
-    minimal)
-        TEMPLATE_FILE="$CFG_DIR/keybinds-minimal.kdl"
-        ;;
-    *)
-        echo "usage: keybind-mode full|minimal" >&2
-        exit 2
-        ;;
-esac
+    case "${1:-}" in
+        full)
+            TEMPLATE_FILE="$CFG_DIR/keybinds-full.kdl"
+            ;;
+        minimal)
+            TEMPLATE_FILE="$CFG_DIR/keybinds-minimal.kdl"
+            ;;
+        *)
+            echo "usage: keybind-mode full|minimal" >&2
+            exit 2
+            ;;
+    esac
 
-BACKUP_FILE="$(mktemp)"
-cp "$ACTIVE_FILE" "$BACKUP_FILE"
+    BACKUP_FILE="$(mktemp)"
+    cp "$ACTIVE_FILE" "$BACKUP_FILE"
 
-if ! cp "$TEMPLATE_FILE" "$ACTIVE_FILE"; then
+    if ! cp "$TEMPLATE_FILE" "$ACTIVE_FILE"; then
+        rm -f "$BACKUP_FILE"
+        exit 1
+    fi
+
+    if ! niri validate --config "$CONFIG_FILE"; then
+        cp "$BACKUP_FILE" "$ACTIVE_FILE"
+        rm -f "$BACKUP_FILE"
+        exit 1
+    fi
+
     rm -f "$BACKUP_FILE"
-    exit 1
-fi
+    niri msg action load-config-file
+}
 
-if ! niri validate --config "$CONFIG_FILE"; then
-    cp "$BACKUP_FILE" "$ACTIVE_FILE"
-    rm -f "$BACKUP_FILE"
-    exit 1
-fi
+keybind_mode_macos() {
+    echo "keybind-mode is only available on niri/Linux." >&2
+}
 
-rm -f "$BACKUP_FILE"
-niri msg action load-config-file
+keybind_mode() {
+    case "$(uname -s 2>/dev/null || printf unknown)" in
+        Darwin) keybind_mode_macos "$@" ;;
+        Linux) keybind_mode_linux "$@" ;;
+        *) keybind_mode_linux "$@" ;;
+    esac
+}
+
+keybind_mode "$@"
