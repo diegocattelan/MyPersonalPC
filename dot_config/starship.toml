@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:color_orange)[ LCARS ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[ OPS-204 ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple bg:color_blue)[ ONLINE ](bold fg:color_fg0 bg:color_blue)[ ](fg:color_blue)\
+[](fg:color_orange)[ LCARS ](bold fg:color_bg_console bg:color_orange)[](fg:color_orange bg:color_purple)[ OPS ](bold fg:color_fg0 bg:color_purple)[](fg:color_purple bg:color_blue)[ ONLINE ](bold fg:color_fg0 bg:color_blue)[ ](fg:color_blue)\
 \n\
 $os\
 $username\
@@ -75,7 +75,7 @@ RedHatEnterprise = "󱄛"
 [username]
 show_always = true
 style_user = "bg:color_orange fg:color_fg0"
-style_root = "bg:color_orange fg:color_fg0"
+style_root = "bg:color_red fg:color_bg_console"
 format = '[ CREW $user ]($style)'
 
 [hostname]
@@ -168,7 +168,7 @@ format = '[](fg:color_bg3)[ ENV $symbol( $environment) ](fg:#fff2cc bg:color_
 
 [time]
 disabled = false
-time_format = "%a %d %B %y   %R"
+time_format = "%y%j.%H%M"
 style = "bg:color_bg1"
 format = '[](fg:color_bg1)[ STARDATE $time ](fg:color_fg0 bg:color_bg1)[ ](fg:color_bg1)'
 

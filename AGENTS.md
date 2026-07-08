@@ -427,8 +427,10 @@ an LCARS-inspired glyph-heavy multi-line prompt using a black, amber, purple,
 blue, and red palette. Its structure is: LCARS status header, system identity
 row, location/context row, telemetry row, and a wide command marker such as
 `COMPUTER READY`, `RED ALERT DIAG`, `NAV`, `REPL`, or `VIS` instead of a small
-single-glyph arrow. A timestamped backup of the original restored prompt is
-kept at:
+single-glyph arrow. The identity row includes the `LINK` local IP segment both
+locally and over SSH. The telemetry row uses a compact stardate-style time
+format based on year, day of year, and hour/minute. A timestamped backup of the
+original restored prompt is kept at:
 
 ```text
 ~/.config/starship.toml.backup-20260707-233053
