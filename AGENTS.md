@@ -452,17 +452,20 @@ Existing tmux panes keep already-rendered prompt text in their visible buffer.
 After changing Starship symbols or terminal fonts, press Enter in old panes to
 draw a fresh prompt and use `Ctrl-L` if the stale prompt remains visible.
 
-Alacritty starts `tmux new-session` by default through
-`~/.config/alacritty/alacritty.toml`. This keeps normal terminal launches inside
-tmux while giving each Alacritty window an independent tmux session. Do not use
-`tmux new-session -A -s main` here unless the intended behavior is to show the
-same tmux session in every terminal. Alacritty invocations with an explicit
-command, for example `alacritty -e less ...`, still run that command instead of
-the default shell.
+Tmux auto-start is handled by `~/.bashrc.d/30-tmux.sh`, not by Alacritty.
+Alacritty launches the normal user shell, then the shell initialisation decides
+whether to enter tmux. Local interactive terminal shells run `tmux new-session`,
+so each local terminal gets an independent tmux session.
 
-Interactive SSH logins attach to one persistent tmux session named `ssh`
-through `~/.bashrc.d/30-ssh-tmux.sh`. The script only runs for interactive SSH
-shells, skips when already inside tmux, and can be bypassed with:
+Interactive SSH logins attach to one persistent tmux session named `ssh` with
+`tmux new-session -A -s ssh`. The script only runs for interactive terminal
+shells, skips when already inside tmux, and can be bypassed globally with:
+
+```bash
+NO_AUTO_TMUX=1 bash
+```
+
+For an SSH one-off bypass, use:
 
 ```bash
 ssh -t <host> 'NO_SSH_TMUX=1 bash -l'
