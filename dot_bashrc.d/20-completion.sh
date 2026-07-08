@@ -25,7 +25,8 @@ __bashrc_completion_linux() {
   #   Ctrl-r: search command history
   #   Ctrl-t: insert a selected file or directory
   #   Alt-c:  cd into a selected directory
-  __bashrc_source_if_readable /usr/share/fzf/completion.bash
+  # Do not source fzf's broad completion.bash here: it can replace command
+  # specific completions such as git's with _fzf_path_completion.
   __bashrc_source_if_readable /usr/share/fzf/key-bindings.bash
 }
 
@@ -33,7 +34,8 @@ __bashrc_completion_macos() {
   if [ -n "${HOMEBREW_PREFIX:-}" ]; then
     __bashrc_source_if_readable "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
     __bashrc_source_readable_dir "$HOMEBREW_PREFIX/etc/bash_completion.d"
-    __bashrc_source_if_readable "$HOMEBREW_PREFIX/opt/fzf/shell/completion.bash"
+    # Keep fzf key bindings without letting its generic completion override
+    # command-specific bash-completion definitions.
     __bashrc_source_if_readable "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.bash"
   fi
 }

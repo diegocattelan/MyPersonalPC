@@ -516,6 +516,15 @@ Existing tmux panes keep already-rendered prompt text in their visible buffer.
 After changing Starship symbols or terminal fonts, press Enter in old panes to
 draw a fresh prompt and use `Ctrl-L` if the stale prompt remains visible.
 
+## Bash Completion
+
+Bash completion setup lives in `~/.bashrc.d/20-completion.sh`. Keep standard
+`bash-completion` as the owner of command-specific completions such as `git`,
+`paru`, and package manager commands. Load fzf key bindings for `Ctrl-r`,
+`Ctrl-t`, and `Alt-c`, but do not source fzf's broad `completion.bash` by
+default because it can replace command-specific completions with the generic
+`_fzf_path_completion` handler.
+
 Tmux auto-start is handled by `~/.bashrc.d/30-tmux.sh`, not by Alacritty.
 Alacritty launches the normal user shell, then the shell initialisation decides
 whether to enter tmux. Local interactive terminal shells run `tmux new-session`,
