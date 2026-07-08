@@ -507,10 +507,21 @@ runtimes, Docker, Kubernetes, command duration, and status self-contained with
 their own opening and closing glyphs so disabled or inactive modules do not
 leave empty separators behind.
 
-ble.sh is disabled in `~/.bashrc.d/90-blesh.sh` because it reparses `PS1` and
+ble.sh provides Bash autosuggestions, auto-complete while typing, and syntax
+highlighting. Keep the managed local copy at `~/.local/share/blesh` on
+`0.4.0-devel3-2` or newer, because the older `0.3.4` copy reparses `PS1` and
 downgrades Starship's truecolor prompt escapes from 24-bit colors to indexed
-ANSI colors. Keep Starship initialisation in `~/.bashrc.d/95-starship-prompt.sh`
-after the disabled ble.sh hook.
+ANSI colors. The chezmoi source script
+`run_onchange_after_70-blesh.sh` downloads the upstream release from
+`https://github.com/akinomyoga/ble.sh` and installs it there.
+
+The Bash startup order for ble.sh is deliberate:
+
+- `~/.bashrc.d/90-blesh.sh` sources ble.sh with `--attach=none` and sets
+  `bleopt term_true_colors=semicolon` when the option exists.
+- `~/.bashrc.d/95-starship-prompt.sh` initialises Starship.
+- `~/.bashrc.d/99-blesh-attach.sh` runs `ble-attach` after Starship so ble.sh
+  sees the final prompt and preserves the LCARS truecolor rendering.
 
 Existing tmux panes keep already-rendered prompt text in their visible buffer.
 After changing Starship symbols or terminal fonts, press Enter in old panes to
