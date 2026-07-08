@@ -460,6 +460,17 @@ same tmux session in every terminal. Alacritty invocations with an explicit
 command, for example `alacritty -e less ...`, still run that command instead of
 the default shell.
 
+Interactive SSH logins attach to one persistent tmux session named `ssh`
+through `~/.bashrc.d/30-ssh-tmux.sh`. The script only runs for interactive SSH
+shells, skips when already inside tmux, and can be bypassed with:
+
+```bash
+ssh -t <host> 'NO_SSH_TMUX=1 bash -l'
+```
+
+This keeps local terminals independent while remote SSH logins always return to
+the same session.
+
 The tmux configuration lives in `~/.tmux.conf`. It keeps
 `default-terminal` on `tmux-256color` and enables RGB/truecolor for
 `xterm-256color`, `alacritty`, and `xterm-kitty` clients. If Starship colors look
