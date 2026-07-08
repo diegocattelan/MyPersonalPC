@@ -470,6 +470,22 @@ escapes and reload with:
 tmux source-file ~/.tmux.conf
 ```
 
+Some shells may start with `TERM=xterm-kitty` even though this system does not
+install the `kitty` or `kitty-terminfo` Arch packages. The ncurses database does
+provide a `kitty` entry, so a local `xterm-kitty` alias is maintained at:
+
+```text
+~/.local/share/terminfo-src/xterm-kitty.terminfo
+```
+
+Chezmoi recompiles it into `~/.terminfo` through:
+
+```text
+~/.local/share/chezmoi/run_onchange_after_75-xterm-kitty-terminfo.sh
+```
+
+Verify with `infocmp xterm-kitty` and `TERM=xterm-kitty tput colors`.
+
 ## Libvirt Windows VM / Docker Networking
 
 The Windows 11 libvirt VM is defined in the system libvirt instance, not the
