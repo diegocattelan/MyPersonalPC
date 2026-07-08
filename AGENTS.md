@@ -423,14 +423,20 @@ for glyphs that may not be covered or selected correctly by the primary terminal
 font.
 
 Starship configuration lives in `~/.config/starship.toml`. The active prompt is
-an LCARS-inspired glyph-heavy multi-line prompt using a black, amber, purple,
-blue, and red palette. Its structure is: LCARS status header, system identity
-row, location/context row, telemetry row, and a wide command marker such as
-`COMPUTER READY`, `RED ALERT DIAG`, `NAV`, `REPL`, or `VIS` instead of a small
-single-glyph arrow. The identity row includes the `LINK` local IP segment both
-locally and over SSH. The telemetry row uses a compact stardate-style time
-format based on year, day of year, and hour/minute. A timestamped backup of the
-original restored prompt is kept at:
+an LCARS-inspired glyph-heavy multi-line prompt using the Classic palette from
+TheLCARS.com: orange, moonlit-violet, blue, ice, sunglow, red, gray, and
+space-white. Its structure is: LCARS status header, system identity row,
+dedicated `LINK` row for active IPv4 interfaces, location/context row,
+telemetry row, and a wide command marker such as `COMPUTER READY`, `RED ALERT
+DIAG`, `NAV`, `REPL`, or `VIS` instead of a small single-glyph arrow. The
+status header uses Starship's `fill` module to extend the blue LCARS panel to
+the full terminal width. The `LINK` row is shown both locally and over SSH. The
+telemetry row uses a human-readable `CHRONO YYYY-MM-DD HH:MM` segment rather
+than a numeric stardate.
+Bright LCARS panels such as orange, yellow, aqua, blue, purple, and red should
+use `color_bg_console` text; reserve `color_fg0` for genuinely dark panels such
+as command duration. A timestamped backup of the original restored prompt is
+kept at:
 
 ```text
 ~/.config/starship.toml.backup-20260707-233053
@@ -438,6 +444,16 @@ original restored prompt is kept at:
 
 Avoid emoji fallback glyphs in this prompt; use only known Nerd Font private-use
 symbols and test inside Alacritty and tmux after changes.
+
+The `LINK` row is a Starship custom module backed by:
+
+```text
+~/.local/bin/starship-link-ips
+```
+
+It lists active global IPv4 addresses as `interface=address`, for example
+`wlan0=10.11.12.103 virbr0=192.168.122.1 docker0=172.17.0.1`. Keep the script
+small and shell-compatible because Starship runs it on every prompt draw.
 
 The prompt layout uses independent rounded capsule segments rather than one
 continuous powerline chain. Keep optional modules such as git, language

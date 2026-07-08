@@ -1,0 +1,38 @@
+#!/bin/sh
+set -eu
+
+collect_ips() {
+  ip -o -4 addr show scope global up 2>/dev/null | awk '
+    {
+      iface = $2
+      ipaddr = ""
+      for (i = 1; i <= NF; i++) {
+        if ($i == "inet") {
+          split($(i + 1), parts, "/")
+          ipaddr = parts[1]
+          break
+        }
+      }
+      if (iface != "" && ipaddr != "") {
+        if (out != "") {
+          out = out " "
+        }
+        out = out iface "=" ipaddr
+      }
+    }
+    END {
+      if (out != "") {
+        print out
+      } else {
+        exit 1
+      }
+    }
+  '
+}
+
+if [ "${1:-}" = "--check" ]; then
+  collect_ips >/dev/null
+  exit $?
+fi
+
+collect_ips
