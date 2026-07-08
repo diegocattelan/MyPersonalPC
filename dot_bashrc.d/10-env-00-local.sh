@@ -33,36 +33,12 @@ __bashrc_source_nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 }
 
-__bashrc_docker_host_linux() {
-  if [ -z "${DOCKER_HOST:-}" ]; then
-    if [ -n "${XDG_RUNTIME_DIR:-}" ]; then
-      export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
-    else
-      export DOCKER_HOST="unix:///run/user/$(id -u 2>/dev/null || printf 1000)/docker.sock"
-    fi
-  fi
-}
-
-__bashrc_docker_host_macos() {
-  :
-}
-
-__bashrc_docker_host() {
-  case "$(uname -s 2>/dev/null || printf unknown)" in
-    Darwin) __bashrc_docker_host_macos ;;
-    Linux) __bashrc_docker_host_linux ;;
-    *) __bashrc_docker_host_linux ;;
-  esac
-}
-
 __bashrc_brew_bin_result="$(__bashrc_brew_bin)"
 if [ -n "$__bashrc_brew_bin_result" ]; then
   eval "$("$__bashrc_brew_bin_result" shellenv)"
 fi
 
-__bashrc_docker_host
 __bashrc_source_nvm
 
 unset __bashrc_brew_bin_result
 unset -f __bashrc_brew_bin_linux __bashrc_brew_bin_macos __bashrc_brew_bin __bashrc_source_nvm
-unset -f __bashrc_docker_host_linux __bashrc_docker_host_macos __bashrc_docker_host

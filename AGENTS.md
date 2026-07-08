@@ -582,6 +582,10 @@ Bash completion setup lives in `~/.bashrc.d/20-completion.sh`. Keep standard
 default because it can replace command-specific completions with the generic
 `_fzf_path_completion` handler.
 
+Do not export `DOCKER_HOST` globally from Bash, Fish, or other shell startup
+files. Let the Docker CLI use its default context/socket unless a project sets a
+different host explicitly for that shell session.
+
 Tmux auto-start is handled by `~/.bashrc.d/30-tmux.sh`, not by Alacritty.
 Alacritty launches the normal user shell, then the shell initialisation decides
 whether to enter tmux. Local interactive terminal shells run `tmux new-session`,
