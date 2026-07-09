@@ -485,7 +485,8 @@ space-white. Its structure is: exit-code header, system identity row,
 dedicated `LINK` row for active IPv4 interfaces, connection row,
 optional session-context rows, location/context row, optional folder-context rows,
 telemetry row, and a command row that shows only the `CMD` label on success,
-or `RED ALERT DIAG`, `NAV`, `REPL`, or `VIS` when state needs to be visible.
+or a red `CMD` label on failure; `NAV`, `REPL`, or `VIS` are shown when shell
+editing state needs to be visible.
 The header shows the previous command's exit code as `EXIT 0` on success or
 `EXIT <code>` on failure in a single-color capsule: green for success, red for
 failure, padded so the first row is 80 columns long. Each primary
