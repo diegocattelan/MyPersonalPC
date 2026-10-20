@@ -521,6 +521,27 @@ annotation but not screen-toolkit OCR, QR, color picking, palette, pinning,
 measurement, Google Lens, recording, or webcam features. The old clipper
 notecard binding `Mod+Shift+N` is intentionally unassigned.
 
+On 2026-10-20, the native v5 configuration and plugin selection were adapted
+from the read-only reference host `ninetails` (`10.11.12.118`). The enabled
+community plugins are:
+
+- `oldirtty/color_picker` with the bar widget and attached panel
+- `gustav0ar/drive-health` with the summary widget
+- `yuuto/arch-updater` with the bar widget
+
+Enable or repair them through `noctalia msg plugins enable <author/plugin>`;
+do not copy materialized plugin code or plugin data from another host. Required
+local dependencies are `hyprpicker`, `smartmontools`, and `pacman-contrib`;
+`paru` supplies the optional AUR integration. Flatpak and `yay` are optional.
+Drive Health's privileged full-SMART collector and Arch Updater's optional
+keep-authorization Polkit rule are not installed automatically; enabling either
+is a separate, explicit administrative action.
+
+The managed TOML carries the portable bar, widget, plugin, wallpaper, Polkit,
+and screenshot settings from `ninetails`. Keep hardware-specific state local:
+the lockscreen remains bound to this laptop's `eDP-1`, and the remote Bluetooth
+battery device path is intentionally not copied.
+
 Native v5 materializes plugin sources, plugin data, notification history, and
 other runtime state below `~/.local/state/noctalia/`; never add that tree to
 chezmoi. Do not manage clipboard-derived files such as the legacy

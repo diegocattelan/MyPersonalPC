@@ -1,15 +1,80 @@
-# Native Noctalia v5 configuration migrated from the v4 screenshot workflow.
+# Native Noctalia v5 configuration, based on the ninetails setup.
+# Hardware-specific lockscreen and battery-device state stays local.
+
+[bar.default]
+center = [ "clock", "group:g1", "keyboard_layout", "volume", "battery" ]
+end = [
+    "notifications",
+    "clipboard",
+    "bluetooth",
+    "brightness",
+    "control-center",
+    "session",
+    "screenshot",
+    "widget",
+    "tray",
+    "widget_2"
+]
+
+    [[bar.default.capsule_group]]
+    enabled = true
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "cpu", "ram", "summary" ]
+    opacity = 1.0
+    padding = 27.0
+
+[desktop_widgets]
+enabled = false
+
+[plugin_settings."oldirtty/color_picker"]
+panel_placement = "attached"
+
+[plugins]
+enabled = [ "oldirtty/color_picker", "gustav0ar/drive-health", "yuuto/arch-updater" ]
 
 [shell]
 polkit_agent = true
 
-[shell.screenshot]
-directory = "~/Immagini/Screenshot"
-filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
-save_to_file = false
-copy_to_clipboard = false
-freeze_screen = true
-confirm_region = false
-show_cursor = false
-pipe_to_command = true
-pipe_command = "satty --filename - --output-filename \"$NOCTALIA_SCREENSHOT_PATH\""
+    [shell.screenshot]
+    directory = "~/Immagini/Screenshot"
+    filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
+    save_to_file = false
+    copy_to_clipboard = false
+    freeze_screen = true
+    confirm_region = true
+    remember_last_region = true
+    show_cursor = true
+    pipe_to_command = true
+    pipe_command = "satty --filename - --output-filename \"$NOCTALIA_SCREENSHOT_PATH\""
+
+[wallpaper.default]
+path = "/usr/share/noctalia/assets/noctalia-wallpaper.png"
+
+[wallpaper.last]
+path = "/usr/share/noctalia/assets/noctalia-wallpaper.png"
+
+[widget.battery]
+capsule = true
+
+[widget.clock]
+capsule = true
+capsule_fill = "on_primary"
+capsule_foreground = "primary"
+format = "{:%H:%M %Y-%m-%d}"
+
+[widget.ram]
+stat = "swap_pct"
+
+[widget.summary]
+type = "gustav0ar/drive-health:summary"
+
+[widget.tray]
+capsule = true
+capsule_border = "primary"
+
+[widget.widget]
+type = "oldirtty/color_picker:widget"
+
+[widget.widget_2]
+type = "yuuto/arch-updater:widget"
