@@ -1,0 +1,15 @@
+# Native Noctalia v5 configuration migrated from the v4 screenshot workflow.
+
+[shell]
+polkit_agent = true
+
+[shell.screenshot]
+directory = "~/Immagini/Screenshot"
+filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
+save_to_file = false
+copy_to_clipboard = false
+freeze_screen = true
+confirm_region = false
+show_cursor = false
+pipe_to_command = true
+pipe_command = "satty --filename - --output-filename \"$NOCTALIA_SCREENSHOT_PATH\""

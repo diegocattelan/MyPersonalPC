@@ -221,32 +221,52 @@ does not currently have `dms` or `kitty` installed. Do not copy old DMS commands
 blindly into `~/.config/niri/cfg/keybinds.kdl`, because they may validate as
 niri syntax while still doing nothing at runtime.
 
-Use Noctalia IPC equivalents where they exist:
+This host migrated to native Noctalia 5 on 2026-08-30. The installed package at
+migration time was `noctalia 5.0.0_beta.10-1.1`; `qs`, `noctalia-shell`, and
+their Quickshell IPC are no longer installed or used. Niri starts the shell
+with:
 
-- launcher: `qs -c noctalia-shell ipc call launcher toggle`
-- settings: `qs -c noctalia-shell ipc call settings toggle`
-- notifications: `qs -c noctalia-shell ipc call notifications toggleHistory`
-- clipboard: `qs -c noctalia-shell ipc call plugin:clipper toggle`
-- wallpaper: `qs -c noctalia-shell ipc call wallpaper toggle`
-- lock: `qs -c noctalia-shell ipc call lockScreen lock`
-- power menu: `qs -c noctalia-shell ipc call sessionMenu toggle`
-- volume: `qs -c noctalia-shell ipc call volume ...`
-- media: `qs -c noctalia-shell ipc call media ...`
-- brightness: `qs -c noctalia-shell ipc call brightness ...`
+```kdl
+spawn-at-startup "noctalia"
+```
+
+Use the native Noctalia 5 IPC commands in active keybinds:
+
+- launcher: `noctalia msg panel-toggle launcher`
+- settings: `noctalia msg settings-toggle`
+- system monitor: `noctalia msg panel-toggle control-center system`
+- notifications: `noctalia msg panel-toggle control-center notifications`
+- clipboard: `noctalia msg panel-toggle clipboard`
+- lock: `noctalia msg session lock`
+- power menu: `noctalia msg panel-toggle session`
+- volume: `noctalia msg volume-down`, `volume-up`, and `volume-mute`
+- microphone mute: `noctalia msg mic-mute`
+- media: `noctalia msg media previous`, `next`, or `toggle`
+- brightness: `noctalia msg brightness-down` or `brightness-up`
+
+Noctalia 5 does not provide the old relative seek IPC. Keep seek -3/+3 seconds
+on `playerctl position 3-` and `playerctl position 3+`.
+
+Noctalia 5.0.0 beta.10 can discard an MPRIS player that registers before it has
+title, artist, or album metadata, even though `playerctl` can already see it.
+The symptom is `noctalia msg media ...` reporting `no active player`; restart
+the player with metadata ready or restart Noctalia after playback has begun.
+This is tracked upstream as `noctalia-dev/noctalia#2950`.
 
 The old DMS-only bindings are intentionally documented as not replicated unless
 DMS is installed again:
 
 - `Mod+Alt+N`: rename workspace through DMS
 - `Mod+Shift+W`: create window rule through DMS
+- `Mod+Shift+N`: create a note through the Noctalia 4 clipper plugin
 
 The old DMS full/minimal keybind file switch is recreated locally for IntelliJ
 or other applications that need their own `Mod` shortcuts. `Mod+Alt+I` switches
 between:
 
 - `~/.config/niri/cfg/keybinds-full.kdl`: the complete shortcut set
-- `~/.config/niri/cfg/keybinds-minimal.kdl`: only `Mod+Alt+I` and
-  `Mod+Backslash`
+- `~/.config/niri/cfg/keybinds-minimal.kdl`: only `Mod+Alt+I`,
+  `Mod+Backslash`, and `Mod+Grave`
 
 The active file included by niri remains `~/.config/niri/cfg/keybinds.kdl`.
 The switch is handled by `~/.config/niri/cfg/keybind-mode`, which copies the
@@ -261,16 +281,17 @@ The visible shortcut summary lives at:
 ~/.config/niri/cfg/keybinds-riepilogo.txt
 ```
 
-It is opened by this binding in `~/.config/niri/cfg/keybinds.kdl`:
+It is opened by both layout aliases in `~/.config/niri/cfg/keybinds.kdl`:
 
 ```kdl
-Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" {
-    spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt";
-}
+Mod+Backslash allow-inhibiting=false hotkey-overlay-title="Keybinds Summary" { spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt"; }
+Mod+Grave allow-inhibiting=false hotkey-overlay-title="Keybinds Summary (US layout)" { spawn "alacritty" "--title" "Niri keybinds" "-e" "less" "/home/birbante/.config/niri/cfg/keybinds-riepilogo.txt"; }
 ```
 
-Keep `allow-inhibiting=false` on the help binding and keep the same binding in
-`keybinds-minimal.kdl` so `Mod+Backslash` still opens the help in IntelliJ mode.
+Keep `allow-inhibiting=false` on both help bindings and keep both in
+`keybinds-minimal.kdl`. The configured aliases cover `Backslash` in the Italian
+layout and `Grave` in the US layout. Confirm the physical keysyms in the real
+Wayland session after keyboard or layout changes.
 
 When changing key combinations in `~/.config/niri/cfg/keybinds.kdl`, update
 `~/.config/niri/cfg/keybinds-full.kdl` and
@@ -310,18 +331,21 @@ human-readable, and still validate niri after changing `cfg/keybinds.kdl`.
 The local keymap is meant to preserve muscle memory from the previous Dank/DMS
 configuration while using this system's available components:
 
-- `Mod+A`, `Mod+S`, `Mod+N`, and `Mod+V` call Noctalia panels or plugins.
+- `Mod+A`, `Mod+S`, `Mod+M`, `Mod+N`, and `Mod+V` call native Noctalia 5
+  panels.
 - `Mod+T` opens `alacritty`, because `kitty` is not installed.
 - `Mod+Tab` toggles niri overview.
 - `Mod+Alt+I` switches between full and minimal keybind templates for IntelliJ
   keybind passthrough.
-- `Mod+Backslash` opens the shortcut help in both full and minimal modes.
+- `Mod+Backslash` on the Italian layout and `Mod+Grave` on the US layout open
+  the shortcut help in both full and minimal modes.
 - `Mod+Alt+Left/Right` changes column width and `Mod+Alt+J/K` changes window
   height.
 - `Alt+Tab`, `Alt+Shift+Tab`, `Alt+A`, and `Alt+Shift+A` are configured through
   `recent-windows` to match the old Alt-Tab workflow.
-- Screenshots are on `Print`, `Ctrl+Print`, and `Alt+Print`, with `XF86Launch1`
-  alternatives.
+- `Print`/`XF86Launch1` captures an area through Noctalia and Satty;
+  `Ctrl+Print`/`Ctrl+XF86Launch1` captures the active screen through Noctalia
+  and Satty; `Alt+Print`/`Alt+XF86Launch1` keeps Niri's native window capture.
 
 ## IntelliJ / JetBrains
 
@@ -399,60 +423,120 @@ sysctl fs.inotify.max_user_watches fs.inotify.max_user_instances fs.inotify.max_
 cat /proc/$(pgrep -n -f 'intellij-idea/bin/idea')/limits | rg 'Max open files'
 ```
 
-## Noctalia Clipboard History
+## Noctalia 5 Native Configuration
 
-Noctalia clipboard history needs `cliphist` plus `wl-clipboard`. The live
-setting is in `~/.config/noctalia/settings.json`:
+Noctalia 5 does not convert the v4 JSON/QML tree in place. Before the migration,
+the complete 391-file, approximately 35 MiB v4 tree was copied and verified at:
 
-```json
-"enableClipboardHistory": true
+```text
+~/.local/share/noctalia-v4-backups/20260830-pre-v5-migration
 ```
 
-Noctalia starts the clipboard watchers only when the shell initializes. After
-installing `cliphist` or changing the clipboard history setting, restart the
-shell or log out and back in:
+Keep both that backup and the legacy `~/.config/noctalia` JSON/QML files intact
+for rollback/reference. The active native v5 configuration is TOML:
+
+```text
+~/.config/noctalia/config.toml
+```
+
+Settings written by the v5 GUI live separately at:
+
+```text
+~/.local/state/noctalia/settings.toml
+```
+
+State values override the managed TOML. Do not delete the state file; inspect
+the effective result with `noctalia config export full`. At migration time the
+state file had no `[shell.screenshot]` override, so the managed screenshot
+settings were effective.
+
+### Polkit Authentication
+
+Use the native Noctalia 5 authentication agent as the only graphical Polkit
+agent in the Niri session. It is enabled in the managed configuration with:
+
+```toml
+[shell]
+polkit_agent = true
+```
+
+Do not autostart a standalone Polkit agent or re-enable the legacy Noctalia 4
+`polkit-agent` plugin unless intentionally replacing the native agent; running
+multiple agents can cause registration conflicts. Verify the native agent with
+`noctalia config export full`, the Noctalia log, and an inert authentication
+request such as `pkexec /usr/bin/true`.
+
+Validate and reload Noctalia and Niri with:
 
 ```bash
-pkill qs
-qs -c noctalia-shell &
+noctalia config validate ~/.config/noctalia
+niri validate --config ~/.config/niri/config.kdl
+noctalia msg config-reload
+niri msg action load-config-file
 ```
 
-The watcher commands are:
+The native clipboard service uses Wayland data control and is enabled by the v5
+config. `wl-clipboard` remains required by Satty, and `cliphist` remains
+installed, but the v4 `wl-paste --watch cliphist store` processes and `pkill
+qs` restart procedure are no longer part of Noctalia startup.
+
+### Noctalia to Satty Screenshots
+
+Noctalia area and active-screen capture are piped to Satty. The managed files
+are:
 
 ```text
-wl-paste --type text --watch cliphist store
-wl-paste --type image --watch cliphist store
+~/.config/noctalia/config.toml
+~/.config/satty/config.toml
 ```
 
-## Noctalia Config
+Noctalia passes the PNG on standard input and supplies the final path through
+`NOCTALIA_SCREENSHOT_PATH`. Native save/copy are disabled so cancelling Satty
+does not leave an unedited image. Satty saves to `~/Immagini/Screenshot`; Enter
+copies, saves, and exits, while Escape cancels and exits. `Ctrl+C` copies,
+`Ctrl+S` saves to the proposed path, and `Ctrl+Shift+S` opens Save As.
 
-Manage Noctalia settings in chezmoi as configuration, but do not add downloaded
-plugin code or runtime data wholesale.
+The laptop mapping preserved from the pre-migration config assumes that the
+physical Fn screenshot key emits `XF86Launch1`; `Print` remains an alias for
+external keyboards. Confirm the emitted keysym in the real Wayland session
+before treating the hardware mapping as verified, and recheck it after keyboard
+or firmware changes.
 
-Managed Noctalia settings include:
+### Noctalia 4 Plugins and Theme Gaps
 
-- `~/.config/noctalia/settings.json`
-- `~/.config/noctalia/plugins.json`
-- `~/.config/noctalia/colors.json`
-- plugin `settings.json` files, for example screen-toolkit and keybind-cheatsheet
-
-Do not manage `~/.config/noctalia/plugins/clipper/pinned.json` by default,
-because it can contain clipboard-derived personal data.
-
-### Noctalia Theme Generation
-
-Noctalia's Alacritty template is enabled in
-`~/.config/noctalia/settings.json` under `templates.activeTemplates` with the
-`alacritty` id. The generated terminal theme lives at:
+No v4 QML plugin was copied into the native v5 plugin store. At migration time
+`plugins.enabled` was empty, while the legacy tree still contained:
 
 ```text
-~/.config/alacritty/themes/noctalia.toml
+arch-updater, calendar-widget, clipboard, clipper, daily-wallpaper,
+display-settings, keybind-cheatsheet, monique, monitor-layout,
+network-indicator, network-manager-vpn, niri-overview-launcher,
+niri-screensaver, noctalia-calculator, noctalia-supergfxctl,
+parallax-wallpaper, polkit-agent, screen-toolkit, ssh-sessions,
+sys-info-widget, usb-drive-manager
 ```
 
-`~/.config/alacritty/alacritty.toml` imports that generated theme. Keep color
-palette sections such as `[colors.primary]`, `[colors.normal]`, and
-`[colors.bright]` out of the main Alacritty config unless deliberately
-overriding Noctalia, because they can mask the generated theme.
+Treat each as a separate v5 migration. Satty replaces screen capture and basic
+annotation but not screen-toolkit OCR, QR, color picking, palette, pinning,
+measurement, Google Lens, recording, or webcam features. The old clipper
+notecard binding `Mod+Shift+N` is intentionally unassigned.
+
+Native v5 materializes plugin sources, plugin data, notification history, and
+other runtime state below `~/.local/state/noctalia/`; never add that tree to
+chezmoi. Do not manage clipboard-derived files such as the legacy
+`~/.config/noctalia/plugins/clipper/pinned.json`.
+
+The v4 Alacritty template was not migrated to a native v5 template. On first v5
+startup Noctalia removed the legacy generated
+`~/.config/alacritty/themes/noctalia.toml` and its import from the live
+Alacritty config; native v5 currently has no enabled template ids. On
+2026-08-30 the default Noctalia 5 theme was chosen deliberately, so keep the
+legacy theme and import absent in both the live configuration and chezmoi. Treat
+any future native v5 Alacritty template setup as a separate, explicit change.
+
+In chezmoi, manage the stable v5 TOML files and Niri integration explicitly.
+The existing managed v4 JSON/plugin settings are legacy entries; do not refresh
+them or add the full QML tree as part of v5 maintenance.
 
 ## Alacritty / Tmux
 
