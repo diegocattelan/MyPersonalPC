@@ -60,6 +60,17 @@ This keeps GitHub credentials out of dotfiles. The first authenticated HTTPS
 push may still need the user to provide GitHub credentials or a token
 interactively; after that Git can retrieve them from the local keyring.
 
+GNOME Keyring is the only Secret Service provider. It owns
+`org.freedesktop.secrets` (D-Bus activation and the user
+`gnome-keyring-daemon.socket`), and niri's portal config routes
+`org.freedesktop.impl.portal.Secret` to `gnome-keyring`. The `kwallet` package
+stays installed because `bitwarden`, `kio`, `skrooge`, and `qtkeychain-qt6`
+depend on it, but it is disabled in the managed `~/.config/kwalletrc` with
+`[Wallet] Enabled=false` so Qt/KDE apps fall back to libsecret. Do not enable
+KWallet or `ksecretd` alongside GNOME Keyring. Verify with
+`busctl --user status org.freedesktop.secrets` (Comm should be
+`gnome-keyring-d`).
+
 ## Codex MCP Servers
 
 Codex MCP server configuration is managed in:
