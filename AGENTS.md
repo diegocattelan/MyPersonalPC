@@ -71,6 +71,14 @@ KWallet or `ksecretd` alongside GNOME Keyring. Verify with
 `busctl --user status org.freedesktop.secrets` (Comm should be
 `gnome-keyring-d`).
 
+GNOME Keyring also provides the SSH agent through `gcr-ssh-agent.socket`,
+enabled in the user systemd instance (the `sockets.target.wants` symlink is
+managed by chezmoi). `SSH_AUTH_SOCK` is set for the whole graphical session by
+`~/.config/environment.d/50-ssh-agent.conf` to `${XDG_RUNTIME_DIR}/gcr/ssh`;
+do not override it from Bash startup files or start a separate `ssh-agent`.
+Changes to `environment.d` reach niri and the apps it spawns only after a new
+login. Verify with `echo $SSH_AUTH_SOCK` and `ssh-add -l`.
+
 ## Codex MCP Servers
 
 Codex MCP server configuration is managed in:
